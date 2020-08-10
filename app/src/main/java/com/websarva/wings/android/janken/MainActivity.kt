@@ -4,7 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.preference.PreferenceManager
 import kotlinx.android.synthetic.main.activity_main.*
+import androidx.core.content.edit as edit
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,6 +16,11 @@ class MainActivity : AppCompatActivity() {
         gu.setOnClickListener { onJankenButtonTapped(it) } /*ラムダ式とSAM変換でクリック時のリスナーを設定　　　*/
         choki.setOnClickListener { onJankenButtonTapped(it) }
         pa.setOnClickListener { onJankenButtonTapped(it) }
+
+        val pref = PreferenceManager.getDefaultSharedPreferences(this)
+        pref.edit {
+            clear()   // アプリケーション起動時にクリア
+        }
     }
 
     fun onJankenButtonTapped(view: View?) { /*null許容型のView*/

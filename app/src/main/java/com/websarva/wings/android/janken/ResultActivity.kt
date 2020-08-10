@@ -2,6 +2,8 @@ package com.websarva.wings.android.janken
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.content.edit
+import androidx.preference.PreferenceManager
 import kotlinx.android.synthetic.main.activity_result.*
 
 class ResultActivity : AppCompatActivity() {
@@ -33,7 +35,7 @@ class ResultActivity : AppCompatActivity() {
         }
 
         // コンピュータの手を決める
-        val comHand = (Math.random() * 3 ).toInt()//0~2のランダムな整数を返す
+        val comHand = getHand()  //出す手を決めるメソッドgetHandを使う
         when (comHand) {
             gu -> comHandImage.setImageResource(R.drawable.com_gu)
             choki -> comHandImage.setImageResource(R.drawable.com_choki)
@@ -41,12 +43,70 @@ class ResultActivity : AppCompatActivity() {
         }
 
         //勝敗を判定する
-        val gameResult = (comHand - myHand + 3 ) % 3//ジャンケン判定ロジック
+        val gameResult = (comHand - myHand + 3) % 3//ジャンケン判定ロジック
         when (gameResult) {
             0 -> resultLabel.setText(R.string.result_draw)   //引き分け
             1 -> resultLabel.setText(R.string.result_win)    //勝ち
             2 -> resultLabel.setText(R.string.result_lose)   //負け
         }
         backButton.setOnClickListener { finish() } /* ラムダ式とSAM変換でクリック時のリスナーを設定　*/
+
+        // じゃんけんの結果を保存する
+        saveData(myHand, comHand, gameResult)
+    }
+
+    private fun saveData(myHand: Int, comHand: Int, gameResult: Int) {
+        val pref = PreferenceManager.getDefaultSharedPreferences(this)
+        val gameCount = pref.getInt("GAME_COUNT", 0)     //勝負した回数
+        val winningStreakCount = pref.getInt("WINNING_STREAK_COUNT", 0)  //連勝した回数
+        val lastComHand = pref.getInt("LAST_COM_HAND", 0)    //コンピュータの前回の手
+        val lastGameResult = pref.getInt("GAME_RESULT", -1)   //前回の勝敗
+
+        val edtWinningStreakCount: Int =
+            when {
+                lastGameResult == 2 && gameResult == 2 ->
+                    winningStreakCount + 1    //コンピュータが連勝したら、値を＋１
+                else ->
+                    0
+            }
+        pref.edit {
+            putInt("GAME_COUNT", gameCount + 1)
+            putInt("WINNING_STREAK_COUNT", edtWinningStreakCount)
+            putInt("LAST_MY_HAND", myHand)
+            putInt("LAST_COM_HAND", comHand)
+            putInt("BEFORE_LAST_COM_HAND", lastComHand)
+            putInt("GAME_RESULT", gameResult)
+        }
+    }
+
+    private fun getHand(): Int {
+        var hand = (Math.random() * 3).toInt()
+        val pref = PreferenceManager.getDefaultSharedPreferences(this)
+        val gameCount = pref.getInt("GAME_COUNT", 0)     //勝負した回数
+        val winningStreakCount = pref.getInt("WINNING_STREAK_COUNT", 0)  //連勝した回数
+        val lastMyHand = pref.getInt("LAST_MY_HAND", 0)    //自分の前回の手
+        val lastComHand = pref.getInt("LAST_COM_HAND", 0)    //コンピュータの前回の手
+        val beforeLastComHand = pref.getInt("BEFORE_LAST_COM_HAND", 0)    //コンピュータの前々回の手
+        val gameResult = pref.getInt("GAME_RESULT", -1)   //前回の勝敗
+
+        if (gameCount == 1) {
+            if(gameResult == 2) {
+                // 前回の勝負が1回目で、CPUが勝った場合、CPUは次に出す手を変える
+                while  (lastComHand == hand) { // 1回目は同じ値だから回って、handが０〜２のどれかになる、また比較して、handが変わるまで繰り返す
+                    hand = (Math.random() * 3).toInt()
+                }
+            } else if (gameResult == 1) {
+                // 前回の勝負が1回目で、CPUが負けた場合、CPUは前回相手が出した手に勝つ手を出す
+                hand = (lastMyHand - 1 + 3 ) % 3
+            }
+        } else if (winningStreakCount > 0) {
+            if(beforeLastComHand == lastComHand) {
+                //同じ手で連勝した場合は手を変える
+                while  (lastComHand == hand) {   // 1回目は同じ値だから回って、handが０〜２のどれかになる、また比較して、handが変わるまで繰り返す
+                    hand = (Math.random() * 3).toInt()
+                }
+            }
+        }
+        return hand
     }
 }
