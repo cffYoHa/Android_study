@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#74B771</color>//アクションバーの背景色
+    <color name="colorPrimaryDark">#3C9C5A</color>//ステータスバーの背景色
+    <color name="colorAccent">#536DFE</color>//UIコントロールの基本色
+    <color name="primaryText">#757575</color>//プライマリ文字の色（ボタンやテキストビューの色）
+</resources>
