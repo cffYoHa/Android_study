@@ -1,12 +1,22 @@
 package com.websarva.wings.android.mycountdowntimer
 
 import android.content.IntentSender
+import android.media.AudioAttributes
+import android.media.AudioManager
+import android.media.SoundPool
+import android.os.Build
+import android.os.Build.VERSION_CODES.LOLLIPOP
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var soundPool: SoundPool//インスタンス宣言と、あとで初期化するよ
+    private var soundResId = 0//サウンドプロパティのリソースID
+
+
     //innerがつくことで、外部の変数（レイアウトに配置されたビューのID名を参照できるようになる
     inner class  MyCountDownTimer(millisInFuture: Long, countDownInterval: Long) :
         CountDownTimer(millisInFuture, countDownInterval) {
@@ -21,6 +31,7 @@ class MainActivity : AppCompatActivity() {
 
         override fun onFinish() {
             timerText.text = "0:00"
+            soundPool.play(soundResId, 1.0f, 100f, 0,0,1.0f)
         }
     }
 
@@ -48,5 +59,28 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        soundPool =
+            if(Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                @Suppress("DEPRECATION")
+                SoundPool(2, AudioManager.STREAM_ALARM, 0)//soudPoolはAPI21移行// (LolliPop)でdeprecated
+            } else {
+                val audioAttributes = AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_ALARM)
+                    .build()
+                SoundPool.Builder()
+                    .setMaxStreams(1)
+                    .setAudioAttributes(audioAttributes)
+                    .build()
+            }
+        soundResId = soundPool.load(this, R.raw.bellsound, 1)
+    }
+
+    override  fun onPause (){
+        super.onPause()
+        soundPool.release()
     }
 }
