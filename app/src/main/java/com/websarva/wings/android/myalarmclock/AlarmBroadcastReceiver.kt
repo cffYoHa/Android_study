@@ -1,0 +1,17 @@
+package com.websarva.wings.android.myalarmclock
+
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.widget.Toast
+import com.example.myalarmclock.MainActivity
+
+class AlarmBroadcastReceiver : BroadcastReceiver() {//BroadcastReceiverを継承したクラスを作成
+
+    override fun onReceive(context: Context, intent: Intent) {
+        val mainIntent = Intent(context, MainActivity::class.java)
+            .putExtra("onReceive", true)
+            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        context.startActivity(mainIntent)
+    }
+}
