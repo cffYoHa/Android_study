@@ -8,4 +8,5 @@ Androidのお勉強レポジトリ
 - はじプロ/chapter09:カウントダウンタイマーアプリ達成
 - はじプロ/chapter10:洋食屋メニューアプリ達成
 - はじプロ/chapter11:目覚まし時計アプリ未達成（クラッシュするため）
-- なんちゃって/2章: HelloAndroid達成
+- なんちゃって/chapter02: HelloAndroid達成
+- なんちゃって/chapter03: ViewSampleアプリ達成
