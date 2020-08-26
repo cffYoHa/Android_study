@@ -10,3 +10,4 @@ Androidのお勉強レポジトリ
 - はじプロ/chapter11:目覚まし時計アプリ未達成（クラッシュするため）
 - なんちゃって/chapter02: HelloAndroid達成
 - なんちゃって/chapter03: ViewSampleアプリ達成
+- なんちゃって/chpater04: イベントとリスナサンプルアプリ達成
