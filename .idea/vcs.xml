@@ -2,5 +2,19 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/AnimalBook" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/ConstraintLayoutSample" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/HelloAndroid" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/HelloAndroid2" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/HelloSample" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Janken" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/ListViewSample" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/ListViewSample2" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MyAlarmClock" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MyCountdownTimer" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MySize" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MySlidesshow" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/SaintTropez2" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/ViewSample" vcs="Git" />
   </component>
 </project>
