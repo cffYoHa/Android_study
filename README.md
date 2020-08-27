@@ -14,3 +14,4 @@ Androidのお勉強レポジトリ
 - なんちゃって/chapter0501: ListViewサンプルアプリ達成
 - なんちゃって/chapter0502: ダイアログサンプルアプリ達成
 - なんちゃって/chapter06: ConstraintLayoutサンプルアプリを達成
+- なんちゃって/chapter0701: Intentサンプルアプリ達成
