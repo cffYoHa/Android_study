@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <string name="app_name">画面遷移サンプル</string>
+    <string name="tv_thx_title">注文完了</string>
+    <string name="tv_thx_desc">以下の注文をうけつけました。ご注文ありがとうございます。</string>
+    <string name="bt_thx_back">リストに戻る</string>
+</resources>
