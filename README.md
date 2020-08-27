@@ -13,3 +13,4 @@ Androidのお勉強レポジトリ
 - なんちゃって/chpater04: イベントとリスナサンプルアプリ達成
 - なんちゃって/chapter0501: ListViewサンプルアプリ達成
 - なんちゃって/chapter0502: ダイアログサンプルアプリ達成
+- なんちゃって/chapter06: ConstraintLayoutサンプルアプリを達成
