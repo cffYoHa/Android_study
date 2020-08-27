@@ -15,3 +15,4 @@ Androidのお勉強レポジトリ
 - なんちゃって/chapter0502: ダイアログサンプルアプリ達成
 - なんちゃって/chapter06: ConstraintLayoutサンプルアプリを達成
 - なんちゃって/chapter0701: Intentサンプルアプリ達成
+- なんちゃって/chapter0702: ライフサイクルサンプルアプリを達成
