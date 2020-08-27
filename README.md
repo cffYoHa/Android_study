@@ -10,7 +10,7 @@ Androidのお勉強レポジトリ
 - はじプロ/chapter11:目覚まし時計アプリ未達成（クラッシュするため）
 - なんちゃって/chapter02: HelloAndroid達成
 - なんちゃって/chapter03: ViewSampleアプリ達成
-- なんちゃって/chpater04: イベントとリスナサンプルアプリ達成
+- なんちゃって/chapter04: イベントとリスナサンプルアプリ達成
 - なんちゃって/chapter0501: ListViewサンプルアプリ達成
 - なんちゃって/chapter0502: ダイアログサンプルアプリ達成
 - なんちゃって/chapter06: ConstraintLayoutサンプルアプリを達成
