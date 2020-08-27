@@ -11,3 +11,5 @@ Androidのお勉強レポジトリ
 - なんちゃって/chapter02: HelloAndroid達成
 - なんちゃって/chapter03: ViewSampleアプリ達成
 - なんちゃって/chpater04: イベントとリスナサンプルアプリ達成
+- なんちゃって/chapter0501: ListViewサンプルアプリ達成
+- なんちゃって/chapter0502: ダイアログサンプルアプリ達成
