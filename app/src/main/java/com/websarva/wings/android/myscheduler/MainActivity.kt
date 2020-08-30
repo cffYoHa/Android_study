@@ -2,11 +2,7 @@ package com.websarva.wings.android.myscheduler
 
 import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
-import android.view.Menu
-import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.realm.Realm
 import io.realm.kotlin.where
@@ -24,10 +20,16 @@ class MainActivity : AppCompatActivity() {
         list.layoutManager = LinearLayoutManager(this)//インスタンスを生成し、recyclerViewのレイアウうとマネージャーとして登録
         val schedules = realm.where<Schedule>().findAll()
         val adapter = ScheduleAdapter(schedules)//ScheduleAdapterのインスタンスを生成し、RecyclerViewに設定
-        //        list.adapter = adapter
+        list.adapter = adapter
 
         fab.setOnClickListener { view ->
             val intent = Intent(this, ScheduleEditActivity::class.java)
+            startActivity(intent)
+        }
+//RecyclerViewの項目がタップされたときの処理
+        adapter.setOnItemClickListener { id ->
+            val intent = Intent(this, ScheduleEditActivity::class.java)
+                .putExtra("schedule_id", id)
             startActivity(intent)
         }
     }

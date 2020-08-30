@@ -1,6 +1,5 @@
 package com.websarva.wings.android.myscheduler
 
-
 import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +12,12 @@ import io.realm.RealmRecyclerViewAdapter
 class ScheduleAdapter(data: OrderedRealmCollection<Schedule>) :
     RealmRecyclerViewAdapter<Schedule, ScheduleAdapter.ViewHolder>(data, true) {
 
+    private var listener: ((Long?) -> Unit)? = null
+
+    fun setOnItemClickListener(listener: (Long?) -> Unit) {//
+        this.listener = listener
+    }
+
     init {
         setHasStableIds(true)
     }
@@ -22,8 +27,8 @@ class ScheduleAdapter(data: OrderedRealmCollection<Schedule>) :
         val title: TextView = cell.findViewById(android.R.id.text2)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)
-            : ScheduleAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
+             ScheduleAdapter.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(
             android.R.layout.simple_expandable_list_item_2,
@@ -39,6 +44,9 @@ class ScheduleAdapter(data: OrderedRealmCollection<Schedule>) :
         val schedule: Schedule? = getItem(position)
         holder.date.text = DateFormat.format("yyyy/MM/dd", schedule?.date)
         holder.title.text = schedule?.title
+        holder.itemView.setOnClickListener {//セルに使用しているビューがタップされたときの処理
+            listener?.invoke(schedule?.id)
+        }
     }
 
     override fun getItemId(position: Int): Long {
