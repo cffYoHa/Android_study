@@ -17,3 +17,4 @@ Androidのお勉強レポジトリ
 - なんちゃって/chapter06: ConstraintLayoutサンプルアプリを達成
 - なんちゃって/chapter0701: Intentサンプルアプリ達成
 - なんちゃって/chapter0702: ライフサイクルサンプルアプリを達成
+- なんちゃって/chapter09: フラグメントサンプルアプリを達成
