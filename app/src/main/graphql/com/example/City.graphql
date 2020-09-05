@@ -1,0 +1,7 @@
+query City($id: Int!){
+  city(id: $id){
+	name
+	latitude
+	longitude
+  }
+}
